@@ -43,29 +43,43 @@ ${renderLicenseBadge(license)}
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
+  let tableOfContents = `
+## Table of Contents
+- [Description](#description)
+- [Installation](#installation)
+- [Usage](#usage)
+`;
+
+  if (data.license && data.license !== 'None') {
+    tableOfContents += `- [License](#license)\n`;
+  }
+
+  tableOfContents += `- [Contributing](#contributing)\n`;
+  tableOfContents += `- [Tests](#tests)\n`;
+  tableOfContents += `- [Questions](#questions)\n`;
+
   return `# ${data.title}
-  ## Description
-  ${data.description}
-  
-  ## Table of Contents
-  ${data.tableOfContents}
-  
-  ## Installation
-  ${data.installation}
-  
-  ## Usage
-  ${data.usage}
-  
-  ${renderLicenseSection(data.license)} 
-  
-  ## Contributing
-  ${data.contributing}
-  
-  ## Tests
-  ${data.tests}
-  
-  ## Questions
-  ${data.questions}
+${tableOfContents}
+
+## Description
+${data.description}
+
+## Installation
+${data.installation}
+
+## Usage
+${data.usage}
+
+${renderLicenseSection(data.license)} 
+
+## Contributing
+${data.contributing}
+
+## Tests
+${data.tests}
+
+## Questions
+${data.questions}
 `;
 }
 
